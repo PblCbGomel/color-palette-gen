@@ -10,9 +10,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { AngularMaterialModuleModule } from './angular-material-module/angular-material-module.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -21,8 +19,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent],
   imports: [
-    MatIconModule,
-    MatButtonModule,
+    AngularMaterialModuleModule,
     BrowserModule,
     HttpClientModule,
     TranslateModule.forRoot({
