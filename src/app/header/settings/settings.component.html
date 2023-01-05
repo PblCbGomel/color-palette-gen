@@ -1,0 +1,28 @@
+<button mat-icon-button [matMenuTriggerFor]="numberMenu">
+  <mat-icon>{{ numberOfColors }}</mat-icon>
+</button>
+<mat-menu #numberMenu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let item of numberItems"
+    (click)="numberMenuClick(item)"
+  >
+    <span>{{ item }}</span>
+  </button>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="langMenu">
+  <mat-icon>language</mat-icon>
+</button>
+<mat-menu #langMenu="matMenu">
+  <button mat-menu-item>
+    <span>Ru</span>
+  </button>
+  <button mat-menu-item>
+    <span>En</span>
+  </button>
+</mat-menu>
+
+<button mat-icon-button (click)="changeTheme()">
+  <mat-icon>{{ theme }}</mat-icon>
+</button>

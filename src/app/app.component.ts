@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'color-palette-gen';
-  options = ['123', '1234', '23455'];
 }
