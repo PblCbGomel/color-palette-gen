@@ -15,11 +15,12 @@
   <mat-icon>language</mat-icon>
 </button>
 <mat-menu #langMenu="matMenu">
-  <button mat-menu-item>
-    <span>Ru</span>
-  </button>
-  <button mat-menu-item>
-    <span>En</span>
+  <button
+    mat-menu-item
+    *ngFor="let itemLang of languageItems"
+    (click)="languageMenuClick(itemLang)"
+  >
+    <span>{{ itemLang }}</span>
   </button>
 </mat-menu>
 
