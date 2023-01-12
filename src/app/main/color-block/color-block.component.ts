@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenerateRandomColorService } from 'src/app/services/generate-random-color.service';
 
 @Component({
   selector: 'app-color-block',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./color-block.component.scss'],
 })
 export class ColorBlockComponent implements OnInit {
-  selectedColor: String = '#c32af3';
+  selectedColor: String = '';
 
-  constructor() {}
+  constructor(private GenerateColorService: GenerateRandomColorService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedColor = this.GenerateColorService.generateColor();
+  }
 }

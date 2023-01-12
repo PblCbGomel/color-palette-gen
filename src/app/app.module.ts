@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { SettingsComponent } from './header/settings/settings.component';
 import { ColorBlockComponent } from './main/color-block/color-block.component';
+import { RandomcolorModule } from 'angular-randomcolor';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NgxColorsModule,
     ReactiveFormsModule,
     FormsModule,
+    RandomcolorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
