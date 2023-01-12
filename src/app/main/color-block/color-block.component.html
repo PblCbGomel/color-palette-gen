@@ -1,6 +1,16 @@
 <div class="wrapper" [style.background]="selectedColor">
-  <ngx-colors ngx-colors-trigger [(ngModel)]="selectedColor"></ngx-colors>
-  <mat-form-field>
-    <input matInput [(ngModel)]="selectedColor" />
-  </mat-form-field>
+  <div class="circle-wrapper">
+    <ngx-colors ngx-colors-trigger [(ngModel)]="selectedColor"></ngx-colors>
+    <mat-form-field>
+      <input matInput class="color-input" [(ngModel)]="selectedColor" />
+    </mat-form-field>
+  </div>
+  <button
+    class="lock-item"
+    mat-icon-button
+    [ngStyle]="{ 'background-color': 'white' }"
+    (click)="changeLock()"
+  >
+    <mat-icon>{{ lockIcon }}</mat-icon>
+  </button>
 </div>
