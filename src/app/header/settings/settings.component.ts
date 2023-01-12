@@ -8,12 +8,12 @@ import { ThemeChangeServiceService } from 'src/app/services/theme-change-service
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
-  @ViewChild('numberMenu') numberMenu: ElementRef | undefined;
-
   numberOfColors: String = 'filter_3';
   numberItems: Number[] = [3, 4, 5, 6];
   languageItems: String[] = ['en-US', 'ru-RU'];
   theme: String = 'brightness_7';
+  visibilityRgbCircle: boolean = false;
+  visibilityIcon: String = 'visibility_off';
 
   constructor(
     private changeThemeS: ThemeChangeServiceService,
@@ -25,11 +25,11 @@ export class SettingsComponent implements OnInit {
     this.translate.use(localStorage.getItem('lang') || 'en-US');
   }
 
-  numberMenuClick(num: Number) {
+  numberMenuClick(num: Number): void {
     this.numberOfColors = 'filter_' + num;
   }
 
-  languageMenuClick(language: String) {
+  languageMenuClick(language: String): void {
     if ((language = 'en-US')) {
       this.translate.use('en-US');
     } else {
@@ -37,13 +37,23 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  changeTheme() {
+  changeTheme(): void {
     if (this.theme === 'brightness_7') {
       this.theme = 'brightness_3';
       this.changeThemeS.changeToDark();
     } else {
       this.theme = 'brightness_7';
       this.changeThemeS.changeToLight();
+    }
+  }
+
+  changeRgbCircleVisibility(): void {
+    if (this.visibilityRgbCircle === false) {
+      this.visibilityRgbCircle = true;
+      this.visibilityIcon = 'visibility';
+    } else {
+      this.visibilityRgbCircle = false;
+      this.visibilityIcon = 'visibility_off';
     }
   }
 }
