@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { GenerateRandomColorService } from 'src/app/services/generate-random-color.service';
 
 @Component({
@@ -24,6 +24,13 @@ export class ColorBlockComponent implements OnInit {
     } else {
       this.isLocked = true;
       this.lockIcon = 'lock';
+    }
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  changeColor(e: KeyboardEvent): void {
+    if (this.isLocked === false && e.code === 'Space') {
+      this.selectedColor = this.GenerateColorService.generateColor();
     }
   }
 }

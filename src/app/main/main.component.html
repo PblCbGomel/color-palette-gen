@@ -1,4 +1,4 @@
-<app-color-block></app-color-block>
-<app-color-block></app-color-block>
-<app-color-block></app-color-block>
-<app-color-block></app-color-block>
+<app-color-block
+  *ngFor="let item of arrayOfBlock"
+  [style.width]="item + '%'"
+></app-color-block>

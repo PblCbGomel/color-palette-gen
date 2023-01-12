@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { ColorCountService } from 'src/app/services/color-count.service';
 import { ThemeChangeServiceService } from 'src/app/services/theme-change-service.service';
 
 @Component({
@@ -8,25 +9,41 @@ import { ThemeChangeServiceService } from 'src/app/services/theme-change-service
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
-  numberOfColors: String = 'filter_3';
-  numberItems: Number[] = [3, 4, 5, 6];
+  numberItems: number[] = [3, 4, 5, 6];
   languageItems: String[] = ['en-US', 'ru-RU'];
   theme: String = 'brightness_7';
   visibilityRgbCircle: boolean = false;
   visibilityIcon: String = 'visibility_off';
+  numberOfColorsString: String;
+  currentNumber: number = 0;
 
   constructor(
     private changeThemeS: ThemeChangeServiceService,
-    private translate: TranslateService
-  ) {}
+    private translate: TranslateService,
+    private colorCountService: ColorCountService
+  ) {
+    colorCountService.currentNumberOfBlocks$.subscribe((count) => {
+      this.currentNumber = count;
+    });
+
+    this.colorCountService.currentNumberOfBlocks$.next(
+      Number(localStorage.getItem('currentNumber')) || 4
+    );
+
+    this.numberOfColorsString = 'filter_' + this.currentNumber;
+  }
 
   ngOnInit(): void {
     this.translate.setDefaultLang(localStorage.getItem('lang') || 'en-US');
     this.translate.use(localStorage.getItem('lang') || 'en-US');
   }
 
-  numberMenuClick(num: Number): void {
-    this.numberOfColors = 'filter_' + num;
+  numberMenuClick(num: number): void {
+    this.numberOfColorsString = 'filter_' + num;
+
+    localStorage.setItem('currentNumber', String(num));
+
+    this.colorCountService.currentNumberOfBlocks$.next(num);
   }
 
   languageMenuClick(language: String): void {
