@@ -6,6 +6,4 @@ import { Subject } from 'rxjs';
 })
 export class ColorCountService {
   currentNumberOfBlocks$: Subject<number> = new Subject<number>();
-
-  constructor() {}
 }

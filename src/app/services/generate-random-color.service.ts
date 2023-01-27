@@ -5,7 +5,7 @@ import { RandomColor } from 'angular-randomcolor';
   providedIn: 'root',
 })
 export class GenerateRandomColorService {
-  generateColor(): String {
+  generateColor(): string {
     return RandomColor.generateColor();
   }
 }

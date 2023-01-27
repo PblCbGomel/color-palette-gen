@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { CheckLightService } from 'src/app/services/check-light.service';
 import { GenerateRandomColorService } from 'src/app/services/generate-random-color.service';
+import { VisibilityRgbCircleService } from 'src/app/services/visibility-rgb-circle.service';
 
 @Component({
   selector: 'app-color-block',
@@ -7,14 +9,20 @@ import { GenerateRandomColorService } from 'src/app/services/generate-random-col
   styleUrls: ['./color-block.component.scss'],
 })
 export class ColorBlockComponent implements OnInit {
-  selectedColor: String = '';
-  lockIcon = 'lock_open';
+  selectedColor: string = '';
+  lockIcon: string = 'lock_open';
   isLocked: boolean = false;
+  color: string = 'white';
 
-  constructor(private GenerateColorService: GenerateRandomColorService) {}
+  constructor(
+    private GenerateColorService: GenerateRandomColorService,
+    private checkLight: CheckLightService,
+    public areCirclesVisibility: VisibilityRgbCircleService
+  ) {}
 
   ngOnInit(): void {
     this.selectedColor = this.GenerateColorService.generateColor();
+    this.color = this.checkLight.getLight(this.selectedColor);
   }
 
   changeLock(): void {
@@ -31,6 +39,8 @@ export class ColorBlockComponent implements OnInit {
   changeColor(e: KeyboardEvent): void {
     if (this.isLocked === false && e.code === 'Space') {
       this.selectedColor = this.GenerateColorService.generateColor();
+      this.color = this.checkLight.getLight(this.selectedColor);
     }
+    console.log(this.color);
   }
 }

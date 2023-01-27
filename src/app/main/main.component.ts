@@ -14,8 +14,8 @@ export class MainComponent {
     colorCountService.currentNumberOfBlocks$.subscribe((count) => {
       this.currentNumber = count;
       this.arrayOfBlock = [];
-      for (let i = 0; i < this.currentNumber; ++i) {
-        this.arrayOfBlock.push(100 / this.currentNumber);
+      for (let i = 0; i < count; ++i) {
+        this.arrayOfBlock.push(100 / count);
       }
     });
     this.colorCountService.currentNumberOfBlocks$.next(

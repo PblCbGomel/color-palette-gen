@@ -1,8 +1,13 @@
 <div class="wrapper" [style.background]="selectedColor">
-  <div class="circle-wrapper">
+  <div class="circle-wrapper" *ngIf="areCirclesVisibility.visibilityRgbCircle">
     <ngx-colors ngx-colors-trigger [(ngModel)]="selectedColor"></ngx-colors>
     <mat-form-field>
-      <input matInput class="color-input" [(ngModel)]="selectedColor" />
+      <input
+        matInput
+        class="color-input"
+        [style.color]="color"
+        [(ngModel)]="selectedColor"
+      />
     </mat-form-field>
   </div>
   <button

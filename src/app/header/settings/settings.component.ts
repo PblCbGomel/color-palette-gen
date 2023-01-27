@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ColorCountService } from 'src/app/services/color-count.service';
 import { ThemeChangeServiceService } from 'src/app/services/theme-change-service.service';
+import { VisibilityRgbCircleService } from 'src/app/services/visibility-rgb-circle.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +13,6 @@ export class SettingsComponent implements OnInit {
   numberItems: number[] = [3, 4, 5, 6];
   languageItems: String[] = ['en-US', 'ru-RU'];
   theme: String = 'brightness_7';
-  visibilityRgbCircle: boolean = false;
   visibilityIcon: String = 'visibility_off';
   numberOfColorsString: String;
   currentNumber: number = 0;
@@ -20,7 +20,8 @@ export class SettingsComponent implements OnInit {
   constructor(
     private changeThemeS: ThemeChangeServiceService,
     private translate: TranslateService,
-    private colorCountService: ColorCountService
+    private colorCountService: ColorCountService,
+    private areCirclesVisibility: VisibilityRgbCircleService
   ) {
     colorCountService.currentNumberOfBlocks$.subscribe((count) => {
       this.currentNumber = count;
@@ -36,6 +37,8 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.translate.setDefaultLang(localStorage.getItem('lang') || 'en-US');
     this.translate.use(localStorage.getItem('lang') || 'en-US');
+    this.areCirclesVisibility.visibilityRgbCircle =
+      localStorage.getItem('visibilityRgbCircle') === 'true' || false;
   }
 
   numberMenuClick(num: number): void {
@@ -65,12 +68,14 @@ export class SettingsComponent implements OnInit {
   }
 
   changeRgbCircleVisibility(): void {
-    if (this.visibilityRgbCircle === false) {
-      this.visibilityRgbCircle = true;
+    if (this.areCirclesVisibility.visibilityRgbCircle === false) {
+      this.areCirclesVisibility.visibilityRgbCircle = true;
       this.visibilityIcon = 'visibility';
+      localStorage.setItem('visibilityRgbCircle', 'true');
     } else {
-      this.visibilityRgbCircle = false;
+      this.areCirclesVisibility.visibilityRgbCircle = false;
       this.visibilityIcon = 'visibility_off';
+      localStorage.setItem('visibilityRgbCircle', 'false');
     }
   }
 }
