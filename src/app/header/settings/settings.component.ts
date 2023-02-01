@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ColorCountService } from 'src/app/services/color-count.service';
 import { ThemeChangeServiceService } from 'src/app/services/theme-change-service.service';
 import { VisibilityRgbCircleService } from 'src/app/services/visibility-rgb-circle.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-settings',
@@ -11,17 +13,18 @@ import { VisibilityRgbCircleService } from 'src/app/services/visibility-rgb-circ
 })
 export class SettingsComponent implements OnInit {
   numberItems: number[] = [3, 4, 5, 6];
-  languageItems: String[] = ['en-US', 'ru-RU'];
-  theme: String = 'brightness_7';
-  visibilityIcon: String = 'visibility_off';
-  numberOfColorsString: String;
+  languageItems: string[] = ['en-US', 'ru-RU'];
+  theme: string;
+  visibilityIcon: string;
+  numberOfColorsString: string;
   currentNumber: number = 0;
 
   constructor(
     private changeThemeS: ThemeChangeServiceService,
     private translate: TranslateService,
     private colorCountService: ColorCountService,
-    private areCirclesVisibility: VisibilityRgbCircleService
+    private areCirclesVisibility: VisibilityRgbCircleService,
+    public dialog: MatDialog
   ) {
     colorCountService.currentNumberOfBlocks$.subscribe((count) => {
       this.currentNumber = count;
@@ -32,6 +35,19 @@ export class SettingsComponent implements OnInit {
     );
 
     this.numberOfColorsString = 'filter_' + this.currentNumber;
+
+    this.visibilityIcon =
+      localStorage.getItem('visibilityRgbCircle') === 'false'
+        ? 'visibility_off'
+        : 'visibility';
+
+    this.theme = localStorage.getItem('currentTheme') || 'brightness_7';
+
+    if (this.theme === 'brightness_7') {
+      this.changeThemeS.changeToLight();
+    } else {
+      this.changeThemeS.changeToDark();
+    }
   }
 
   ngOnInit(): void {
@@ -61,9 +77,11 @@ export class SettingsComponent implements OnInit {
     if (this.theme === 'brightness_7') {
       this.theme = 'brightness_3';
       this.changeThemeS.changeToDark();
+      localStorage.setItem('currentTheme', 'brightness_3');
     } else {
       this.theme = 'brightness_7';
       this.changeThemeS.changeToLight();
+      localStorage.setItem('currentTheme', 'brightness_7');
     }
   }
 
@@ -77,5 +95,9 @@ export class SettingsComponent implements OnInit {
       this.visibilityIcon = 'visibility_off';
       localStorage.setItem('visibilityRgbCircle', 'false');
     }
+  }
+
+  openHelp(): void {
+    const dialogRef = this.dialog.open(DialogComponent);
   }
 }

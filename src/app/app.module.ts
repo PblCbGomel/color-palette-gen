@@ -15,6 +15,7 @@ import { MainComponent } from './main/main.component';
 import { SettingsComponent } from './header/settings/settings.component';
 import { ColorBlockComponent } from './main/color-block/color-block.component';
 import { RandomcolorModule } from 'angular-randomcolor';
+import { DialogComponent } from './header/settings/dialog/dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MainComponent,
     SettingsComponent,
     ColorBlockComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserAnimationsModule,
