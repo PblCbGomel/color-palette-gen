@@ -18,7 +18,7 @@ import { RandomcolorModule } from 'angular-randomcolor';
 import { DialogComponent } from './header/settings/dialog/dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({

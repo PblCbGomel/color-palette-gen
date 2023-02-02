@@ -1,34 +1,21 @@
-<h2 mat-dialog-title>Помогатор 3000</h2>
+<h2 mat-dialog-title>{{ "header.instruction.headers.head" | translate }}</h2>
 <mat-dialog-content>
-  <h2>Для изменения цветов</h2>
+  <h2>{{ "header.instruction.headers.change-color" | translate }}</h2>
+  <p>{{ "header.instruction.descriptions.change-color" | translate }}</p>
+
+  <h2>{{ "header.instruction.headers.change-number" | translate }}</h2>
+  <p>{{ "header.instruction.descriptions.change-number" | translate }}</p>
+
+  <h2>{{ "header.instruction.headers.themes" | translate }}</h2>
+  <p>{{ "header.instruction.descriptions.themes" | translate }}</p>
+
+  <h2>{{ "header.instruction.headers.for-visibility" | translate }}</h2>
   <p>
-    Жмяк на пробел, чтобы цвета поменялись. Если ты до этого нажал какую-то
-    кнопку на сайте, то она тоже нажмётся пробелом, поэтому после нажатия любой
-    кнопки нажми на пустую часть экрана. Чтобы не менять цвет, нажми на замочек
-    <mat-icon>lock_open</mat-icon>
+    {{ "header.instruction.descriptions.for-visibility" | translate }}
   </p>
 
-  <h2>Изменение количества цветов</h2>
-  <p>
-    Цветов может быть от 3 до 6. Жмяк на <mat-icon>filter</mat-icon>, чтобы
-    изменить их количество.
-  </p>
-
-  <h2>Тёмная и светлая темы</h2>
-  <p>
-    На верхней панельке <mat-icon>brightness_7</mat-icon> - светлая тема, а
-    <mat-icon>brightness_3</mat-icon> - тёмная.
-  </p>
-
-  <h2>Для лучшей видимости</h2>
-  <p>
-    На верхней панельке можно нажать на <mat-icon>visibility</mat-icon>, чтобы в
-    самой палитре не было видно текста и цветового кружочка.
-  </p>
-
-  <h2>Перевод</h2>
-
-  <p>Пока что не работает (мне лень переводить этот текст)</p>
+  <h2>{{ "header.instruction.headers.translate" | translate }}</h2>
+  <p>{{ "header.instruction.descriptions.translate" | translate }}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>

@@ -66,10 +66,12 @@ export class SettingsComponent implements OnInit {
   }
 
   languageMenuClick(language: String): void {
-    if ((language = 'en-US')) {
+    if (language === 'en-US') {
       this.translate.use('en-US');
+      localStorage.setItem('lang', 'en-US');
     } else {
       this.translate.use('ru-RU');
+      localStorage.setItem('lang', 'ru-RU');
     }
   }
 

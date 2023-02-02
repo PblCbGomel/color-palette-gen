@@ -5,3 +5,14 @@
 mat-toolbar {
   height: 7.5vh;
 }
+
+a {
+  text-decoration: none;
+  color: rgb(75, 50, 184);
+  transition: 0.3s;
+}
+
+a:hover {
+  color: rgb(120, 130, 247);
+  transition: 0.3s;
+}

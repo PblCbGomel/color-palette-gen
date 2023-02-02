@@ -1,0 +1,23 @@
+{
+  "footer": "Created by PblCb_Gomel",
+  "header": {
+    "name": "Color Palette Generator",
+    "instruction": {
+      "headers": {
+        "head": "Helper 3000",
+        "change-color": "To change colors",
+        "change-number": "To change the numbers of colors",
+        "themes": "Dark and Light themes",
+        "for-visibility": "To see palette better",
+        "translate": "Translate"
+      },
+      "descriptions": {
+        "change-color": "Press 'space' to change colors. If you press on any button in this app, after pressing on spacebar you'll activete this btn. To avoid this, before changing colors tap on empty part of screen. To block changing of color, press on lock.",
+        "change-number": "Number of colors can be from 3 to 6. Tap on filter to change it.",
+        "themes": "On the top panel sun - light theme, and moon - dark theme.",
+        "for-visibility": "On the top panel you can press on eye to change the visibility of the text and color circles in the palette.",
+        "translate": "To translate text in app, use language button."
+      }
+    }
+  }
+}
